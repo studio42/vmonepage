@@ -193,10 +193,12 @@ var vmonepage = {
   "captchainvalid" : "'.$captchainvalid.'",
   "listshipments" : "'.$listshipments.'",
   "listpayments" : "'.$listpayments.'",
-  "popupaddress" : "'.$popupaddress.'"
+  "popupaddress" : "'.$popupaddress.'",
+  "btn_primary" : "'.$params->get("btn_primary","opg-button-primary").'",
+  "btn_danger" : "'.$params->get("btn_danger","opg-button-danger").'",
+  "form_danger" : "'.$params->get("form_danger","opg-form-danger").'"
   };
 ');
-
 
 ?>
 

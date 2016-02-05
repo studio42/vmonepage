@@ -117,6 +117,11 @@
 
 
 	                </fieldset>
+	                <fieldset name="template">
+						<field 	name="btn_primary" type="text" label="Button Primary class"  description="Primary Button html class to use(leave blank to use default)" default="" />
+						<field 	name="btn_danger" type="text" label="Button Danger Class"  description="Danger Button html class to use(leave blank to use default)" default="" />
+						<field 	name="form_danger" type="text" label="Form Danger Class"  description="Danger Form html class to use(leave blank to use default)" default="" />
+					</fieldset>
 	        </fields>
         </config>
 </extension>

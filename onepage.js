@@ -19,16 +19,20 @@
 */
 
 window.selectedpaymentid = 0;
-var action = "";
-var countrychange = "";
-var popupopen = 0;
 
 jQuery(document).ready(function(){
+
+	var action = "",
+		countrychange = ",
+		popupopen = 0,
+		btn_primary = vmonepage.btn_primary,
+		btn_danger = vmonepage.btn_danger,
+		form_danger = vmonepage.btn_danger;
+	
 	jQuery(".opg-alert").hide();
 	jQuery("#system-message-container").hide();
 	
-	
-	
+
 	if (window._klarnaCheckout) {
             window._klarnaCheckout(function (api) {
                     api.on({
@@ -80,13 +84,13 @@ jQuery(document).ready(function(){
 		   value = validatebillto("yes");
 		   if(value == true)
 		   {
-			   jQuery("#billtobutton").removeClass("opg-button-danger");    
-			   jQuery("#billtobutton").addClass("opg-button-primary");  
+			   jQuery("#billtobutton").removeClass(btn_danger);    
+			   jQuery("#billtobutton").addClass(btn_primary);  
 		   }
 		   else
 		   {	
 		     jQuery("#billtoicon").hide();
-	    	 jQuery("#billtobutton").removeClass("opg-button-primary");
+	    	 jQuery("#billtobutton").removeClass(btn_primary);
 			 jQuery('#BTsameAsST').prop('checked', true);
 		   }
 		  }
@@ -109,7 +113,7 @@ jQuery(document).ready(function(){
 		   else
 		   {
 			 jQuery("#shiptoicon").hide();
-			 jQuery("#shiptobutton").removeClass("opg-button-primary");
+			 jQuery("#shiptobutton").removeClass(btn_primary);
 			 jQuery('#STsameAsBT').prop('checked', true);
 		   }
 		}
@@ -158,15 +162,15 @@ function validatecomment()
      comval = jQuery("#commentpopup #customer_note_field").val();
 	 if(comval == "")
 	 {
-	    jQuery("#commentpopup #customer_note_field").addClass("opg-form-danger");
+	    jQuery("#commentpopup #customer_note_field").addClass(form_danger);
 		jQuery("#commenticon").hide();
-		jQuery("#commentbutton").removeClass("opg-button-primary");
+		jQuery("#commentbutton").removeClass(btn_primary);
 	 }
 	 else
 	 {
 	 	 jQuery("#commenticon").show();
-		 jQuery("#commentbutton").addClass("opg-button-primary");
-	     jQuery("#commentpopup #customer_note_field").removeClass("opg-form-danger");
+		 jQuery("#commentbutton").addClass(btn_primary);
+	     jQuery("#commentpopup #customer_note_field").removeClass(form_danger);
 	     updatecart();   
     	 jQuery("#commentclose").click();
 	 }
@@ -178,15 +182,15 @@ function validatecomment()
 	 if(comval == "")
 	 { 
 		 jQuery("#commenticon").hide();
-		 jQuery("#commentbutton").removeClass("opg-button-primary");
+		 jQuery("#commentbutton").removeClass(btn_primary);
 		 updatecart();   
 	     jQuery("#commentclose").click();
 	 }
 	 else
 	 {	
 		 jQuery("#commenticon").show();
-		 jQuery("#commentbutton").addClass("opg-button-primary");
-	     jQuery("#commentpopup #customer_note_field").removeClass("opg-form-danger");
+		 jQuery("#commentbutton").addClass(btn_primary);
+	     jQuery("#commentpopup #customer_note_field").removeClass(form_danger);
     	 updatecart();   
 	     jQuery("#commentclose").click();
 	 }
@@ -216,11 +220,11 @@ function validatebillto(returnval)
 		if(validatefield == false)
 		{
 		  billtoaddress_valid = false;	 
-		  jQuery("#"+elementid).addClass("opg-form-danger");
+		  jQuery("#"+elementid).addClass(form_danger);
 		}
 		else
 		{
-		  jQuery("#"+elementid).removeClass("opg-form-danger");
+		  jQuery("#"+elementid).removeClass(form_danger);
 		}
 	 });
 
@@ -232,11 +236,11 @@ function validatebillto(returnval)
 		 if(validatefield == false)
 		 {
 			  billtoaddress_valid = false;
-			  jQuery("#virtuemart_country_id").addClass("opg-form-danger");
+			  jQuery("#virtuemart_country_id").addClass(form_danger);
  		 }
 		 else
 		 {
-			  jQuery("#virtuemart_country_id").removeClass("opg-form-danger");
+			  jQuery("#virtuemart_country_id").removeClass(form_danger);
 	  	 }
 	 }
 	 
@@ -247,11 +251,11 @@ function validatebillto(returnval)
 		 if(validatefield == false)
 		 {
 			  billtoaddress_valid = false;
-			  jQuery("#virtuemart_state_id").addClass("opg-form-danger");
+			  jQuery("#virtuemart_state_id").addClass(form_danger);
 	 	 }
 		 else
 		 {
-			  jQuery("#virtuemart_state_id").removeClass("opg-form-danger");
+			  jQuery("#virtuemart_state_id").removeClass(form_danger);
 	  	 }
 	}
 	if(returnval == "yes")
@@ -261,13 +265,13 @@ function validatebillto(returnval)
 	if(!billtoaddress_valid) 
 	{
 	     jQuery("#billtoicon").hide();
-	     jQuery("#billtobutton").removeClass("opg-button-primary");
+	     jQuery("#billtobutton").removeClass(btn_primary);
 		 return false;
 	}
 	else
 	{
 	   jQuery("#billtoicon").show();
-	   jQuery("#billtobutton").addClass("opg-button-primary");
+	   jQuery("#billtobutton").addClass(btn_primary);
 	   updateaddress(4);
 	}
 	
@@ -279,7 +283,7 @@ function validateshipto(returnval)
 	if(jQuery('#STsameAsBT').prop('checked') ==true)
 	{
 	   jQuery("#shiptoicon").hide();
-       jQuery("#shiptobutton").removeClass("opg-button-primary");
+       jQuery("#shiptobutton").removeClass(btn_primary);
 	  
 	}
 	else
@@ -291,11 +295,11 @@ function validateshipto(returnval)
 			if(validatefield == false)
 			{
 			  shipaddress_valid = false;	 
-			  jQuery("#"+elementid).addClass("opg-form-danger");
+			  jQuery("#"+elementid).addClass(form_danger);
 			}
 			else
 			{
-			  jQuery("#"+elementid).removeClass("opg-form-danger");
+			  jQuery("#"+elementid).removeClass(form_danger);
 			}
 		});
 		
@@ -306,11 +310,11 @@ function validateshipto(returnval)
 			 if(validatefield == false)
 			 {
 				  shipaddress_valid = false;
-				  jQuery("#shipto_virtuemart_country_id").addClass("opg-form-danger");
+				  jQuery("#shipto_virtuemart_country_id").addClass(form_danger);
 		 	 }
 			 else
 			 {
-			  jQuery("#shipto_virtuemart_country_id").removeClass("opg-form-danger");
+			  jQuery("#shipto_virtuemart_country_id").removeClass(form_danger);
 		  	 }
 		 }
 		 state_ele2 = jQuery('#shipto_virtuemart_state_id');
@@ -320,11 +324,11 @@ function validateshipto(returnval)
 			 if(validatefield == false)	
 			 {
 				  shipaddress_valid = false;
-				  jQuery("#shipto_virtuemart_state_id").addClass("opg-form-danger");
+				  jQuery("#shipto_virtuemart_state_id").addClass(form_danger);
 		 	 }	
 			 else
 			 {
-				  jQuery("#shipto_virtuemart_state_id").removeClass("opg-form-danger");
+				  jQuery("#shipto_virtuemart_state_id").removeClass(form_danger);
 		  	 }
 		 }
 	}
@@ -335,13 +339,13 @@ function validateshipto(returnval)
 	if(!shipaddress_valid) 
 	{
 	     jQuery("#shiptoicon").hide();
-	     jQuery("#shiptobutton").removeClass("opg-button-primary");
+	     jQuery("#shiptobutton").removeClass(btn_primary);
 		 return false;
 	}
 	else
 	{
 	   jQuery("#shiptoicon").show();
-	   jQuery("#shiptobutton").addClass("opg-button-primary");
+	   jQuery("#shiptobutton").addClass(btn_primary);
 	   updateaddress(4);
 	   jQuery("#shiptoclose").click();
 	}
@@ -356,8 +360,8 @@ function changecheckout(val)
     jQuery("#regtitle").slideUp();
 	jQuery("#guesttitle").slideDown();
 
-	jQuery("#guestchekcout").addClass("opg-button-primary");
-	jQuery("#regcheckout").removeClass("opg-button-primary");
+	jQuery("#guestchekcout").addClass(btn_primary);
+	jQuery("#regcheckout").removeClass(btn_primary);
 	jQuery("#regicon").removeClass("opg-icon-check");
 	jQuery("#guesticon").addClass("opg-icon-check");
 
@@ -372,8 +376,8 @@ function changecheckout(val)
      jQuery("#regtitle").slideDown();
 	 jQuery("#guesttitle").slideUp();
 	 
-	 jQuery("#guestchekcout").removeClass("opg-button-primary");
-	 jQuery("#regcheckout").addClass("opg-button-primary");
+	 jQuery("#guestchekcout").removeClass(btn_primary);
+	 jQuery("#regcheckout").addClass(btn_primary);
 	 jQuery("#regicon").addClass("opg-icon-check");
 	 jQuery("#guesticon").removeClass("opg-icon-check");
 	
@@ -389,8 +393,8 @@ function changemode(val)
   if(val == 1)
   {
     jQuery("#logindiv").slideDown();
-	jQuery("#loginbtn").addClass("opg-button-primary");
-	jQuery("#regbtn").removeClass("opg-button-primary");
+	jQuery("#loginbtn").addClass(btn_primary);
+	jQuery("#regbtn").removeClass(btn_primary);
 	jQuery("#old_payments").slideUp();
 	jQuery(".all_shopper_fields").slideUp();
 	jQuery("#other-things").slideUp();
@@ -398,8 +402,8 @@ function changemode(val)
   if(val == 2)
   {
      jQuery("#logindiv").slideUp();
-	 jQuery("#loginbtn").removeClass("opg-button-primary");
-	 jQuery("#regbtn").addClass("opg-button-primary");
+	 jQuery("#loginbtn").removeClass(btn_primary);
+	 jQuery("#regbtn").addClass(btn_primary);
 	 jQuery("#old_payments").slideDown();
 	 jQuery(".all_shopper_fields").slideDown();
 	 jQuery("#other-things").slideDown();
@@ -471,8 +475,8 @@ function ajaxlogin()
 	 	jQuery("#loadingbutton").click();											  
 	    popupopen = true;
     }	 
- jQuery("#userlogin_username").removeClass("opg-form-danger");
- jQuery("#userlogin_password").removeClass("opg-form-danger");
+ jQuery("#userlogin_username").removeClass(form_danger);
+ jQuery("#userlogin_password").removeClass(form_danger);
  usernameval = document.getElementById("userlogin_username").value;
  passwordval = document.getElementById("userlogin_password").value;
  returnurlval = document.getElementById("returnurl").value;
@@ -482,11 +486,11 @@ function ajaxlogin()
  {
    if(usernameval == "")
    {
-     jQuery("#userlogin_username").addClass("opg-form-danger");
+     jQuery("#userlogin_username").addClass(form_danger);
    }
    if(passwordval == "")
    {
-     jQuery("#userlogin_password").addClass("opg-form-danger");
+     jQuery("#userlogin_password").addClass(form_danger);
    }
     var r = '<div class="opg-alert opg-alert-danger" data-opg-alert><a href="" class="opg-alert-close opg-close"></a><p>' + loginempty + "</p></div>";
 	jQuery("#loginerror").show();
@@ -511,8 +515,8 @@ function ajaxlogin()
 			{
 			  if(data == "error")
 			  {
-			     jQuery("#userlogin_username").addClass("opg-form-danger");
-				 jQuery("#userlogin_password").addClass("opg-form-danger");
+			     jQuery("#userlogin_username").addClass(form_danger);
+				 jQuery("#userlogin_password").addClass(form_danger);
 				 var r = '<div class="opg-alert opg-alert-danger" data-opg-alert><a href="" class="opg-alert-close opg-close"></a><p>' + loginerror + "</p></div>";
 				 jQuery("#loginerror").show();
 				 jQuery("#loginerror").html(r);
@@ -553,13 +557,13 @@ function submit_order() {
    {
 	  if(jQuery("#squaredTwo").prop("checked") == false) 
 	  { 
-	      jQuery("div.squaredTwo").addClass("opg-form-danger");
+	      jQuery("div.squaredTwo").addClass(form_danger);
 	      jQuery("div.squaredTwo").addClass("errorcheck");
 		  errormsg += "<p>"+vmonepage.acceptmeessage+"</p>";
 	  }
 	  else
 	  {
-	      jQuery("div.squaredTwo").removeClass("opg-form-danger");
+	      jQuery("div.squaredTwo").removeClass(form_danger);
 		  jQuery("div.squaredTwo").removeClass("errorcheck");
 	  }
    }
@@ -595,11 +599,11 @@ function submit_order() {
 			if(validatefield == false)
 			{
 			  inputvalidation = false;
-			  jQuery("#"+elementid).addClass("opg-form-danger");
+			  jQuery("#"+elementid).addClass(form_danger);
 			}
 			else
 			{
-			  jQuery("#"+elementid).removeClass("opg-form-danger");
+			  jQuery("#"+elementid).removeClass(form_danger);
 			}
 			
 		});
@@ -613,11 +617,11 @@ function submit_order() {
 			if(validatefield == false)
 			{
 			  inputvalidation = false;	  
-			  jQuery("#"+elementid).addClass("opg-form-danger");
+			  jQuery("#"+elementid).addClass(form_danger);
 			}
 			else
 			{
-			  jQuery("#"+elementid).removeClass("opg-form-danger");
+			  jQuery("#"+elementid).removeClass(form_danger);
 			}
 		});
 		 country_ele2 =  document.getElementById('shipto_virtuemart_country_id');
@@ -627,11 +631,11 @@ function submit_order() {
 			 if(validatefield == false)
 			 {
 				  inputvalidation = false;	  
-				  jQuery("#shipto_virtuemart_country_id").addClass("opg-form-danger");
+				  jQuery("#shipto_virtuemart_country_id").addClass(form_danger);
 	 		 }
 			 else
 			 {
-			  jQuery("#shipto_virtuemart_country_id").removeClass("opg-form-danger");
+			  jQuery("#shipto_virtuemart_country_id").removeClass(form_danger);
 		  	 }
 		 }
 		 state_ele2 =  document.getElementById('shipto_virtuemart_state_id');
@@ -641,11 +645,11 @@ function submit_order() {
 			 if(validatefield == false)
 			 {
 				  inputvalidation = false;	  
-				  jQuery("#shipto_virtuemart_state_id").addClass("opg-form-danger");
+				  jQuery("#shipto_virtuemart_state_id").addClass(form_danger);
 		 	 }	
 			 else
 			 {
-				  jQuery("#shipto_virtuemart_state_id").removeClass("opg-form-danger");
+				  jQuery("#shipto_virtuemart_state_id").removeClass(form_danger);
 		  	 }
 		 }
 	 }
@@ -657,11 +661,11 @@ function submit_order() {
 			if(validatefield == false)
 			{
 			  inputvalidation = false;	 
-			  jQuery("#"+elementid).addClass("opg-form-danger");
+			  jQuery("#"+elementid).addClass(form_danger);
 			}
 			else
 			{
-			  jQuery("#"+elementid).removeClass("opg-form-danger");
+			  jQuery("#"+elementid).removeClass(form_danger);
 			}
 		 });
 	
@@ -673,11 +677,11 @@ function submit_order() {
 			 if(validatefield == false)
 			 {
 				  inputvalidation = false;
-				  jQuery("#virtuemart_country_id").addClass("opg-form-danger");
+				  jQuery("#virtuemart_country_id").addClass(form_danger);
  			 }
 			 else
 			 {
-				  jQuery("#virtuemart_country_id").removeClass("opg-form-danger");
+				  jQuery("#virtuemart_country_id").removeClass(form_danger);
 		  	 }
 		 }
 		 state_ele = document.getElementById("virtuemart_state_id");
@@ -687,11 +691,11 @@ function submit_order() {
 			 if(validatefield == false)
 			 {
 				  inputvalidation = false;
-				  jQuery("#virtuemart_state_id").addClass("opg-form-danger");
+				  jQuery("#virtuemart_state_id").addClass(form_danger);
 		 	 }
 			 else
 			 {
-				  jQuery("#virtuemart_state_id").removeClass("opg-form-danger");
+				  jQuery("#virtuemart_state_id").removeClass(form_danger);
 		  	 }
 		}	
 	 }
@@ -722,11 +726,11 @@ function submit_order() {
 				if(validatefield == false)
 				{
 				  inputvalidation = false;	  
-				  jQuery("#"+elementid).addClass("opg-form-danger");
+				  jQuery("#"+elementid).addClass(form_danger);
 				}
 				else
 				{
-				  jQuery("#"+elementid).removeClass("opg-form-danger");
+				  jQuery("#"+elementid).removeClass(form_danger);
 				}
 			});
 		 country_ele2 =  document.getElementById('shipto_virtuemart_country_id');
@@ -736,11 +740,11 @@ function submit_order() {
 			 if(validatefield == false)
 			 {
 				  inputvalidation = false;	  
-				  jQuery("#shipto_virtuemart_country_id").addClass("opg-form-danger");
+				  jQuery("#shipto_virtuemart_country_id").addClass(form_danger);
 	 		 }
 			 else
 			 {
-			  jQuery("#shipto_virtuemart_country_id").removeClass("opg-form-danger");
+			  jQuery("#shipto_virtuemart_country_id").removeClass(form_danger);
 		  	 }
 		 }
 		 state_ele2 =  document.getElementById('shipto_virtuemart_state_id');
@@ -750,11 +754,11 @@ function submit_order() {
 			 if(validatefield == false)
 			 {
 				  inputvalidation = false;	  
-				  jQuery("#shipto_virtuemart_state_id").addClass("opg-form-danger");
+				  jQuery("#shipto_virtuemart_state_id").addClass(form_danger);
 	 		 }	
 			 else
 			 {
-				  jQuery("#shipto_virtuemart_state_id").removeClass("opg-form-danger");
+				  jQuery("#shipto_virtuemart_state_id").removeClass(form_danger);
 	  		 }
 		 }
 	  }
@@ -792,11 +796,11 @@ function submit_order() {
 			{
 			  inputvalidation = false;	 
 			  billtovalidate = false;
-			  jQuery("#"+elementid).addClass("opg-form-danger");
+			  jQuery("#"+elementid).addClass(form_danger);
 			}
 			else
 			{
-			  jQuery("#"+elementid).removeClass("opg-form-danger");
+			  jQuery("#"+elementid).removeClass(form_danger);
 			}
 		 });
 	   	 country_ele =  document.getElementById('virtuemart_country_id');
@@ -807,11 +811,11 @@ function submit_order() {
 			 {
 				  inputvalidation = false;
 				  billtovalidate = false;
-				  jQuery("#virtuemart_country_id").addClass("opg-form-danger");
+				  jQuery("#virtuemart_country_id").addClass(form_danger);
 	 		 }
 			 else
 			 {
-				  jQuery("#virtuemart_country_id").removeClass("opg-form-danger");
+				  jQuery("#virtuemart_country_id").removeClass(form_danger);
 		  	 }
 		 }
 		 state_ele =  document.getElementById('virtuemart_state_id');
@@ -822,23 +826,23 @@ function submit_order() {
 			 {
 				  inputvalidation = false;
 				  billtovalidate = false;
-				  jQuery("#virtuemart_state_id").addClass("opg-form-danger");
+				  jQuery("#virtuemart_state_id").addClass(form_danger);
 		 	 }	
 			 else
 			 {
-				  jQuery("#virtuemart_state_id").removeClass("opg-form-danger");
+				  jQuery("#virtuemart_state_id").removeClass(form_danger);
 		  	 }
 		  }
 		  
 		  if(billtovalidate == false)
 		  {
-	 	     jQuery("#billtobutton").removeClass("opg-button-primary");  
-			 jQuery("#billtobutton").addClass("opg-button-danger");  
+	 	     jQuery("#billtobutton").removeClass(btn_primary);  
+			 jQuery("#billtobutton").addClass(btn_danger);  
 		  }
 		  else
 		  {
-			 jQuery("#billtobutton").removeClass("opg-button-danger");    
-			 jQuery("#billtobutton").addClass("opg-button-primary");  
+			 jQuery("#billtobutton").removeClass(btn_danger);
+			 jQuery("#billtobutton").addClass(btn_primary);  
 			 
 		  }
 	}
@@ -906,8 +910,8 @@ function submit_order() {
 		   }
 		   else
 		   {
-			     	 jQuery("#userlogin_username").removeClass("opg-form-danger");
-				 	 jQuery("#userlogin_password").removeClass("opg-form-danger");
+			     	 jQuery("#userlogin_username").removeClass(form_danger);
+				 	 jQuery("#userlogin_password").removeClass(form_danger);
 					 usernameval = document.getElementById("username_field").value;
 					 passwordval = document.getElementById("password_field").value;
 					 returnurlval = document.getElementById("returnurl").value;
